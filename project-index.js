@@ -56,3 +56,26 @@ function getDateTime() {
     let dayString = days[now.getDay()];
     return `${dayString}, ${hour}:${minute}`;
   }
+  //Updating date and time
+date.innerText = getDateTime();
+setInterval(() => {
+  date.innerText = getDateTime();
+}, 1000);
+
+// function to get public ip address
+function getPublicIp() {
+  fetch("https://geolocation-db.com/json/", {
+    method: "GET",
+    headers: {},
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      currentCity = data.city;
+      getWeatherData(data.city, currentUnit, hourlyorWeek);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+getPublicIp();
