@@ -122,3 +122,44 @@ function getWeatherData(city, unit, hourlyorWeek) {
       alert("City not found in our database");
     });
 }
+//function to update Forecast
+function updateForecast(data, unit, type) {
+  weatherCards.innerHTML = "";
+  let day = 0;
+  let numCards = 0;
+  if (type === "day") {
+    numCards = 24;
+  } else {
+    numCards = 7;
+  }
+  for (let i = 0; i < numCards; i++) {
+    let card = document.createElement("div");
+    card.classList.add("card");
+    let dayName = getHour(data[day].datetime);
+    if (type === "week") {
+      dayName = getDayName(data[day].datetime);
+    }
+    let dayTemp = data[day].temp;
+    if (unit === "f") {
+      dayTemp = celciusToFahrenheit(data[day].temp);
+    }
+    let iconCondition = data[day].icon;
+    let iconSrc = getIcon(iconCondition);
+    let tempUnit = "°C";
+    if (unit === "f") {
+      tempUnit = "°F";
+    }
+    card.innerHTML = `
+                <h2 class="day-name">${dayName}</h2>
+            <div class="card-icon">
+              <img src="${iconSrc}" class="day-icon" alt="" />
+            </div>
+            <div class="day-temp">
+              <h2 class="temp">${dayTemp}</h2>
+              <span class="temp-unit">${tempUnit}</span>
+            </div>
+  `;
+    weatherCards.appendChild(card);
+    day++;
+  }
+}
