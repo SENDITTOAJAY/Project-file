@@ -198,3 +198,43 @@ function changeBackground(condition) {
   }
   body.style.backgroundImage = `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(${bg})`;
 }
+//get hours from hh:mm:ss
+function getHour(time) {
+  let hour = time.split(":")[0];
+  let min = time.split(":")[1];
+  if (hour > 12) {
+    hour = hour - 12;
+    return `${hour}:${min} PM`;
+  } else {
+    return `${hour}:${min} AM`;
+  }
+}
+
+// convert time to 12 hour format
+function covertTimeTo12HourFormat(time) {
+  let hour = time.split(":")[0];
+  let minute = time.split(":")[1];
+  let ampm = hour >= 12 ? "pm" : "am";
+  hour = hour % 12;
+  hour = hour ? hour : 12; // the hour '0' should be '12'
+  hour = hour < 10 ? "0" + hour : hour;
+  minute = minute < 10 ? "0" + minute : minute;
+  let strTime = hour + ":" + minute + " " + ampm;
+  return strTime;
+}
+
+// function to get day name from date
+function getDayName(date) {
+  let day = new Date(date);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day.getDay()];
+}
+
