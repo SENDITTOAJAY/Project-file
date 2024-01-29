@@ -262,3 +262,40 @@ function updateHumidityStatus(humidity) {
     humidityStatus.innerText = "High";
   }
 }
+// function to get visibility status
+function updateVisibiltyStatus(visibility) {
+  if (visibility <= 0.03) {
+    visibilityStatus.innerText = "Dense Fog";
+  } else if (visibility <= 0.16) {
+    visibilityStatus.innerText = "Moderate Fog";
+  } else if (visibility <= 0.35) {
+    visibilityStatus.innerText = "Light Fog";
+  } else if (visibility <= 1.13) {
+    visibilityStatus.innerText = "Very Light Fog";
+  } else if (visibility <= 2.16) {
+    visibilityStatus.innerText = "Light Mist";
+  } else if (visibility <= 5.4) {
+    visibilityStatus.innerText = "Very Light Mist";
+  } else if (visibility <= 10.8) {
+    visibilityStatus.innerText = "Clear Air";
+  } else {
+    visibilityStatus.innerText = "Very Clear Air";
+  }
+}
+
+// function to get air quality status
+function updateAirQualityStatus(airquality) {
+  if (airquality <= 50) {
+    airQualityStatus.innerText = "Good👌";
+  } else if (airquality <= 100) {
+    airQualityStatus.innerText = "Moderate😐";
+  } else if (airquality <= 150) {
+    airQualityStatus.innerText = "Unhealthy for Sensitive Groups😷";
+  } else if (airquality <= 200) {
+    airQualityStatus.innerText = "Unhealthy😷";
+  } else if (airquality <= 250) {
+    airQualityStatus.innerText = "Very Unhealthy😨";
+  } else {
+    airQualityStatus.innerText = "Hazardous😱";
+  }
+}
