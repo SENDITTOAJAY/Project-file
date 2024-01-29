@@ -299,3 +299,18 @@ function updateAirQualityStatus(airquality) {
     airQualityStatus.innerText = "Hazardous😱";
   }
 }
+// function to handle search form
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let location = search.value;
+  if (location) {
+    currentCity = location;
+    getWeatherData(location, currentUnit, hourlyorWeek);
+  }
+});
+
+// function to convert celcius to fahrenheit
+function celciusToFahrenheit(temp) {
+  return ((temp * 9) / 5 + 32).toFixed(1);
+}
+
