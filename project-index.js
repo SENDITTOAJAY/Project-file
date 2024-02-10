@@ -398,3 +398,55 @@ function removeActive(x) {
     x[i].classList.remove("active");
   }
 }
+function removeSuggestions() {
+  var x = document.getElementById("suggestions");
+  if (x) x.parentNode.removeChild(x);
+}
+
+fahrenheitBtn.addEventListener("click", () => {
+  changeUnit("f");
+});
+celciusBtn.addEventListener("click", () => {
+  changeUnit("c");
+});
+
+// function to change unit
+function changeUnit(unit) {
+  if (currentUnit !== unit) {
+    currentUnit = unit;
+    tempUnit.forEach((elem) => {
+      elem.innerText = `°${unit.toUpperCase()}`;
+    });
+    if (unit === "c") {
+      celciusBtn.classList.add("active");
+      fahrenheitBtn.classList.remove("active");
+    } else {
+      celciusBtn.classList.remove("active");
+      fahrenheitBtn.classList.add("active");
+    }
+    getWeatherData(currentCity, currentUnit, hourlyorWeek);
+  }
+}
+
+hourlyBtn.addEventListener("click", () => {
+  changeTimeSpan("hourly");
+});
+weekBtn.addEventListener("click", () => {
+  changeTimeSpan("week");
+});
+
+// function to change hourly to weekly or vice versa
+function changeTimeSpan(unit) {
+  if (hourlyorWeek !== unit) {
+    hourlyorWeek = unit;
+    if (unit === "hourly") {
+      hourlyBtn.classList.add("active");
+      weekBtn.classList.remove("active");
+    } else {
+      hourlyBtn.classList.remove("active");
+      weekBtn.classList.add("active");
+    }
+    getWeatherData(currentCity, currentUnit, hourlyorWeek);
+  }
+}
+
